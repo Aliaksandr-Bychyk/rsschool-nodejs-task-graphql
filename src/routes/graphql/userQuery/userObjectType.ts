@@ -3,7 +3,8 @@ import { UUIDType } from "../types/uuid.js";
 import IContext from "../types/IContext.js";
 import { User } from "@prisma/client";
 import profileObjectType from "../profileQuery/profileObjectType.js";
-import postObjectType from "../postQuery/postObjectType.js";
+import subscribersOnAuthorsObjectType from "../subscribersOnAuthorsQuery/subscribersOnAuthorsObjectType.js";
+import postObjectTypeList from "../postQuery/postObjectTypeList.js";
 
 const userObjectType = new GraphQLObjectType({
   name: 'User',
@@ -33,7 +34,7 @@ const userObjectType = new GraphQLObjectType({
       },
     },
     posts: {
-      type: postObjectType,
+      type: postObjectTypeList,
       description: 'The posts',
       resolve: async (_source, args: User, context: IContext) => {
         return await context.prisma.post.findMany({
@@ -43,8 +44,28 @@ const userObjectType = new GraphQLObjectType({
         });
       },
     },
-    userSubscribedTo: {},
-    subscribedToUser: {},
+    userSubscribedTo: {
+      type: subscribersOnAuthorsObjectType,
+      description: 'The userSubscribedTo',
+      resolve: async (_source, args: User, context: IContext) => {
+        return await context.prisma.subscribersOnAuthors.findMany({
+          where: {
+            subscriberId: args.id,
+          },
+        });
+      },
+    },
+    subscribedToUser: {
+      type: subscribersOnAuthorsObjectType,
+      description: 'The subscribedToUser',
+      resolve: async (_source, args: User, context: IContext) => {
+        return await context.prisma.subscribersOnAuthors.findMany({
+          where: {
+            authorId: args.id,
+          },
+        });
+      },
+    },
   })
 });
 
