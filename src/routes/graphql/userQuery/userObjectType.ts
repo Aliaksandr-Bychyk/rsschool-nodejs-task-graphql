@@ -3,6 +3,7 @@ import { UUIDType } from "../types/uuid.js";
 import IContext from "../types/IContext.js";
 import { User } from "@prisma/client";
 import profileObjectType from "../profileQuery/profileObjectType.js";
+import postObjectType from "../postQuery/postObjectType.js";
 
 const userObjectType = new GraphQLObjectType({
   name: 'User',
@@ -31,7 +32,17 @@ const userObjectType = new GraphQLObjectType({
         });
       },
     },
-    posts: {},
+    posts: {
+      type: postObjectType,
+      description: 'The posts',
+      resolve: async (_source, args: User, context: IContext) => {
+        return await context.prisma.post.findMany({
+          where: {
+            authorId: args.id,
+          },
+        });
+      },
+    },
     userSubscribedTo: {},
     subscribedToUser: {},
   })
