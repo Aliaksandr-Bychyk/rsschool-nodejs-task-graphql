@@ -4,7 +4,7 @@ import memberObjectType, { memberEnumType } from "../memberQuery/memberObjectTyp
 import IContext from "../types/IContext.js";
 import { MemberType } from "@prisma/client";
 
-const profilesObjectType = new GraphQLObjectType({
+const profileObjectType = new GraphQLObjectType({
   name: 'Profile',
   description: 'A Profile',
   fields: () => ({
@@ -42,4 +42,4 @@ const profilesObjectType = new GraphQLObjectType({
   })
 });
 
-export default profilesObjectType;
+export default profileObjectType;
