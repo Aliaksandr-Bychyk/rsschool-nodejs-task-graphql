@@ -1,11 +1,14 @@
-import { GraphQLObjectType, GraphQLFloat, GraphQLInt, GraphQLBoolean } from "graphql";
+import { GraphQLObjectType, GraphQLInt, GraphQLBoolean } from "graphql";
+import { UUIDType } from "../types/uuid.js";
+import { memberEnumType } from "../memberQuery/memberObjectType.js";
 
 const profilesObjectType = new GraphQLObjectType({
-  name: 'MemberType',
-  description: 'A MemberType',
+  name: 'Profile',
+  description: 'A Profile',
   fields: () => ({
     id: {
-      // type: 
+      type: UUIDType,
+      description: 'The id',
     },
     isMale: {
       type: GraphQLBoolean,
@@ -16,9 +19,15 @@ const profilesObjectType = new GraphQLObjectType({
       description: 'The year of birth'
     },
     user: {},
-    userId: {},
+    userId: {
+      type: UUIDType,
+      description: 'The userId',
+    },
     memberType: {},
-    memberTypeid: {},
+    memberTypeId:  {
+      type: memberEnumType,
+      description: 'The memberTypeId',
+    },
   })
 });
 

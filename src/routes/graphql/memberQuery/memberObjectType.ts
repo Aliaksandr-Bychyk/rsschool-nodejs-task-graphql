@@ -37,3 +37,4 @@ const memberObjectType = new GraphQLObjectType({
 });
 
 export default memberObjectType;
+export { memberEnumType };
