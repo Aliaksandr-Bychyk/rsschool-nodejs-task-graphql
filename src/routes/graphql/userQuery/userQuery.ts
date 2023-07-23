@@ -14,7 +14,7 @@ const userQuery = {
       },
     },
     resolve: async (_source, args: User, context: IContext) => {
-      return await context.prisma.memberType.findUnique({ 
+      return await context.prisma.user.findUnique({ 
         where: {
           id: args.id,
         },
@@ -24,7 +24,7 @@ const userQuery = {
   users: {
     type: userObjectTypeList,
     resolve: async (_source, _args, context: IContext) => {
-      return await context.prisma.memberType.findMany();
+      return await context.prisma.user.findMany();
     },
   },
 };

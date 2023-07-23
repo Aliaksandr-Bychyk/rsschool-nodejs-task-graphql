@@ -14,7 +14,7 @@ const profileQuery = {
       },
     },
     resolve: async (_source, args: Profile, context: IContext) => {
-      return await context.prisma.memberType.findUnique({ 
+      return await context.prisma.profile.findUnique({ 
         where: {
           id: args.id,
         },
@@ -24,7 +24,7 @@ const profileQuery = {
   profiles: {
     type: profileObjectTypeList,
     resolve: async (_source, _args, context: IContext) => {
-      return await context.prisma.memberType.findMany();
+      return await context.prisma.profile.findMany();
     },
   },
 };
