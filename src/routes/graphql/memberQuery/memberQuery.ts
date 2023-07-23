@@ -2,10 +2,11 @@ import { MemberType } from "@prisma/client";
 import memberObjectType, { memberEnumType } from "./memberObjectType.js";
 import IContext from "../types/IContext.js";
 import memberObjectTypeList from "./memberObjectTypeList.js";
+import { GraphQLType } from "graphql";
 
 const memberQuery = {
   memberType: {
-    type: memberObjectType,
+    type: memberObjectType as GraphQLType,
     args: {
       id: {
         type: memberEnumType,
@@ -20,10 +21,10 @@ const memberQuery = {
     },
   },
   memberTypes: {
-    type: memberObjectTypeList,
+    type: memberObjectTypeList as GraphQLType,
     resolve: async (_source, _args, context: IContext) => {
       return await context.prisma.memberType.findMany();
-    }
+    },
   },
 };
 
