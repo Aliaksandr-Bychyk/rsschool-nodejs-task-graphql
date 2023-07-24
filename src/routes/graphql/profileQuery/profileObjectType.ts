@@ -24,10 +24,10 @@ const profileObjectType = new GraphQLObjectType({
     user: {
       type: userObjectType as GraphQLObjectType,
       description: 'The user',
-      resolve: async (_source, args: Profile, context: IContext) => {
+      resolve: async (source: Profile, _args, context: IContext) => {
         return await context.prisma.user.findUnique({
           where: {
-            id: args.userId,
+            id: source.userId,
           },
         });
       },
@@ -39,10 +39,10 @@ const profileObjectType = new GraphQLObjectType({
     memberType: {
       type: memberObjectType as GraphQLObjectType,
       description: 'The memberType',
-      resolve: async (_source, args: Profile, context: IContext) => {
+      resolve: async (source: Profile, _args, context: IContext) => {
         return await context.prisma.memberType.findUnique({
           where: {
-            id: args.memberTypeId,
+            id: source.memberTypeId,
           },
         });
       },

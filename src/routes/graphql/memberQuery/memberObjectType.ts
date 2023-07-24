@@ -38,10 +38,10 @@ const memberObjectType = new GraphQLObjectType({
     profiles: {
       type: profileObjectTypeList,
       description: 'The profiles',
-      resolve: async (_source, args: MemberType, context: IContext) => {
+      resolve: async (source: MemberType, _args, context: IContext) => {
         return await context.prisma.profile.findMany({
           where: {
-            memberTypeId: args.id,
+            memberTypeId: source.id,
           }
         });
       },

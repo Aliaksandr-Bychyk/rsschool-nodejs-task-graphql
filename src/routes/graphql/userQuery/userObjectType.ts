@@ -1,9 +1,8 @@
-import { GraphQLObjectType, GraphQLFloat } from "graphql";
+import { GraphQLObjectType, GraphQLFloat, GraphQLList } from "graphql";
 import { UUIDType } from "../types/uuid.js";
 import IContext from "../types/IContext.js";
 import { User } from "@prisma/client";
 import profileObjectType from "../profileQuery/profileObjectType.js";
-import subscribersOnAuthorsObjectType from "../subscribersOnAuthorsQuery/subscribersOnAuthorsObjectType.js";
 import postObjectTypeList from "../postQuery/postObjectTypeList.js";
 
 const userObjectType = new GraphQLObjectType({
@@ -25,10 +24,10 @@ const userObjectType = new GraphQLObjectType({
     profile: {
       type: profileObjectType as GraphQLObjectType,
       description: 'The profile',
-      resolve: async (_source, args: User, context: IContext) => {
+      resolve: async (source: User, _args, context: IContext) => {
         return await context.prisma.profile.findUnique({
           where: {
-            userId: args.id,
+            userId: source.id,
           },
         });
       },
@@ -36,32 +35,42 @@ const userObjectType = new GraphQLObjectType({
     posts: {
       type: postObjectTypeList,
       description: 'The posts',
-      resolve: async (_source, args: User, context: IContext) => {
+      resolve: async (source: User, _args: User, context: IContext) => {
+        console.log('test', _args.id, source.id)
         return await context.prisma.post.findMany({
           where: {
-            authorId: args.id,
+            authorId: source.id,
           },
         });
       },
     },
     userSubscribedTo: {
-      type: subscribersOnAuthorsObjectType,
+      type: new GraphQLList(userObjectType),
       description: 'The userSubscribedTo',
-      resolve: async (_source, args: User, context: IContext) => {
-        return await context.prisma.subscribersOnAuthors.findMany({
+      resolve: async (source: User, _args, context: IContext) => {
+        console.log('aaaa', source.id)
+        return await context.prisma.user.findMany({
           where: {
-            subscriberId: args.id,
+            subscribedToUser: {
+              every: {
+                subscriberId: source.id,
+              },
+            },
           },
         });
       },
     },
     subscribedToUser: {
-      type: subscribersOnAuthorsObjectType,
+      type: new GraphQLList(userObjectType),
       description: 'The subscribedToUser',
-      resolve: async (_source, args: User, context: IContext) => {
-        return await context.prisma.subscribersOnAuthors.findMany({
+      resolve: async (source: User, _args, context: IContext) => {
+        return await context.prisma.user.findMany({
           where: {
-            authorId: args.id,
+            userSubscribedTo: {
+              some: {
+                authorId: source.id,
+              },
+            },
           },
         });
       },
