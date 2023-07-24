@@ -1,3 +1,4 @@
+import { GraphQLObjectType } from "graphql";
 import postObjectType from "../../queryTypes/postQuery/postObjectType.js";
 import IContext from "../../types/IContext.js";
 import { nonNullChangePostObjectType, nonNullUUIDType } from "../../types/nonNullTypes.js";
@@ -12,7 +13,7 @@ interface IChangePost {
 
 const changePost = {
   changePost: {
-    type: postObjectType,
+    type: postObjectType as GraphQLObjectType,
     args: {
       id: {
         type: nonNullUUIDType,

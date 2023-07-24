@@ -1,17 +1,17 @@
-import { GraphQLInputObjectType } from "graphql";
-import { nonNullGraphQLBoolean, nonNullGraphQLInt, nonNullUUIDType } from "../../types/nonNullTypes.js";
+import { GraphQLBoolean, GraphQLInputObjectType, GraphQLInt } from "graphql";
+import { memberEnumType } from "../../queryTypes/memberQuery/memberObjectType.js";
 
 const changeProfileObjectType = new GraphQLInputObjectType({
   name: 'ChangeProfileInput',
   fields: () => ({
     isMale: {
-      type: nonNullGraphQLBoolean,
+      type: GraphQLBoolean,
     },
     yearOfBirth: {
-      type: nonNullGraphQLInt,
+      type: GraphQLInt,
     },
     memberTypeId: {
-      type: nonNullUUIDType,
+      type: memberEnumType,
     },
   }),
 });

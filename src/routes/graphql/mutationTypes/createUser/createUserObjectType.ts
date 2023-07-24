@@ -1,5 +1,5 @@
 import { GraphQLInputObjectType } from "graphql";
-import { nonNullFloat, nonNullUUIDType } from "../../types/nonNullTypes.js";
+import { nonNullGraphQLFloat, nonNullUUIDType } from "../../types/nonNullTypes.js";
 
 const createUserObjectType = new GraphQLInputObjectType({
   name: 'CreateUserInput',
@@ -8,7 +8,7 @@ const createUserObjectType = new GraphQLInputObjectType({
       type: nonNullUUIDType,
     },
     balance: {
-      type: nonNullFloat,
+      type: nonNullGraphQLFloat,
     },
   }),
 });

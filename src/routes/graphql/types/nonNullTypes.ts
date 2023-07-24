@@ -11,7 +11,7 @@ import changeUserObjectType from "../mutationTypes/changeUser/changeUserObjectTy
 const nonNullUUIDType = new GraphQLNonNull(UUIDType);
 const nonNullMemberEnumType = new GraphQLNonNull(memberEnumType);
 
-const nonNullFloat = new GraphQLNonNull(GraphQLFloat)
+const nonNullGraphQLFloat = new GraphQLNonNull(GraphQLFloat)
 const nonNullGraphQLBoolean = new GraphQLNonNull(GraphQLBoolean);
 const nonNullGraphQLInt = new GraphQLNonNull(GraphQLInt);
 
@@ -26,7 +26,7 @@ const nonNullChangeUserObjectType = new GraphQLNonNull(changeUserObjectType);
 export { 
   nonNullUUIDType,
   nonNullMemberEnumType,
-  nonNullFloat,
+  nonNullGraphQLFloat,
   nonNullGraphQLBoolean,
   nonNullGraphQLInt,
   nonNullCreatePostObjectType,

@@ -1,14 +1,14 @@
-import { GraphQLInputObjectType } from "graphql";
-import { nonNullFloat, nonNullUUIDType } from "../../types/nonNullTypes.js";
+import { GraphQLFloat, GraphQLInputObjectType } from "graphql";
+import { UUIDType } from "../../types/uuid.js";
 
 const changeUserObjectType = new GraphQLInputObjectType({
   name: 'ChangeUserInput',
   fields: () => ({
     name: {
-      type: nonNullUUIDType,
+      type: UUIDType,
     },
     balance: {
-      type: nonNullFloat,
+      type: GraphQLFloat,
     },
   }),
 });

@@ -1,4 +1,5 @@
-import postObjectType from "../../queryTypes/postQuery/postObjectType.js";
+import { GraphQLObjectType } from "graphql";
+import profileObjectType from "../../queryTypes/profileQuery/profileObjectType.js";
 import IContext from "../../types/IContext.js";
 import { nonNullChangeProfileObjectType, nonNullUUIDType } from "../../types/nonNullTypes.js";
 
@@ -13,7 +14,7 @@ interface IChangeProfile {
 
 const changeProfile = {
   changeProfile: {
-    type: postObjectType,
+    type: profileObjectType as GraphQLObjectType,
     args: {
       id: {
         type: nonNullUUIDType,
