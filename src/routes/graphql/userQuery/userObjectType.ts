@@ -50,7 +50,7 @@ const userObjectType = new GraphQLObjectType({
         return await context.prisma.user.findMany({
           where: {
             subscribedToUser: {
-              every: {
+              some: {
                 subscriberId: source.id,
               },
             },
