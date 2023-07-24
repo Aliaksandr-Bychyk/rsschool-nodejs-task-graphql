@@ -10,7 +10,7 @@ const createUserObjectType = new GraphQLInputObjectType({
     balance: {
       type: nonNullFloat,
     },
-  })
+  }),
 });
 
 export default createUserObjectType;

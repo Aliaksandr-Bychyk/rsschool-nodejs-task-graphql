@@ -1,6 +1,7 @@
+import { GraphQLObjectType } from "graphql";
 import postObjectType from "../../queryTypes/postQuery/postObjectType.js";
 import IContext from "../../types/IContext.js";
-import createPostObjectType from "./createPostObjectType.js";
+import { nonNullCreatePostObjectType } from "../../types/nonNullTypes.js";
 
 interface ICreatePost {
   dto: {
@@ -12,10 +13,10 @@ interface ICreatePost {
 
 const createPost = {
   createPost: {
-    type: postObjectType,
+    type: postObjectType as GraphQLObjectType,
     args: {
       dto: {
-        type: createPostObjectType,
+        type: nonNullCreatePostObjectType,
       },
     },
     resolve: async (_source, args: ICreatePost, context: IContext) => {

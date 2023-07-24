@@ -1,7 +1,7 @@
 import { GraphQLObjectType } from 'graphql';
 import IContext from "../../types/IContext.js";
-import createProfileObjectType from "./createProfileObjectType.js";
 import profileObjectType from '../../queryTypes/profileQuery/profileObjectType.js';
+import { nonNullCreateProfileObjectType } from '../../types/nonNullTypes.js';
 
 interface ICreateProfile {
   dto: {
@@ -13,11 +13,11 @@ interface ICreateProfile {
 };
 
 const createProfile = {
-  createUser: {
+  createProfile: {
     type: profileObjectType as GraphQLObjectType,
     args: {
       dto: {
-        type: createProfileObjectType,
+        type: nonNullCreateProfileObjectType,
       },
     },
     resolve: async (_source, args: ICreateProfile, context: IContext) => {

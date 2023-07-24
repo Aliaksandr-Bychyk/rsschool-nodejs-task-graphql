@@ -1,5 +1,5 @@
 import { GraphQLInputObjectType } from "graphql";
-import { nonNullGraphQLBoolean, nonNullGraphQLInt, nonNullUUIDType } from "../../types/nonNullTypes.js";
+import { nonNullGraphQLBoolean, nonNullGraphQLInt, nonNullMemberEnumType, nonNullUUIDType } from "../../types/nonNullTypes.js";
 
 const createProfileObjectType = new GraphQLInputObjectType({
   name: 'CreateProfileInput',
@@ -7,16 +7,16 @@ const createProfileObjectType = new GraphQLInputObjectType({
     isMale: {
       type: nonNullGraphQLBoolean,
     },
-    content: {
+    yearOfBirth: {
       type: nonNullGraphQLInt,
     },
     userId: {
       type: nonNullUUIDType,
     },
     memberTypeId: {
-      type: nonNullUUIDType,
+      type: nonNullMemberEnumType,
     },
-  })
+  }),
 });
 
 export default createProfileObjectType;

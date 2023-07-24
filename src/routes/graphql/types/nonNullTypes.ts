@@ -2,19 +2,27 @@ import { GraphQLBoolean, GraphQLFloat, GraphQLInt, GraphQLNonNull } from "graphq
 import { UUIDType } from "./uuid.js";
 import { memberEnumType } from "../queryTypes/memberQuery/memberObjectType.js";
 import createPostObjectType from "../mutationTypes/createPost/createPostObjectType.js";
+import createUserObjectType from "../mutationTypes/createUser/createUserObjectType.js";
+import createProfileObjectType from "../mutationTypes/createProfile/createProfileObjectType.js";
 
 const nonNullUUIDType = new GraphQLNonNull(UUIDType);
 const nonNullMemberEnumType = new GraphQLNonNull(memberEnumType);
-const nonNullCreatePostObjectType = new GraphQLNonNull(createPostObjectType);
+
 const nonNullFloat = new GraphQLNonNull(GraphQLFloat)
 const nonNullGraphQLBoolean = new GraphQLNonNull(GraphQLBoolean);
 const nonNullGraphQLInt = new GraphQLNonNull(GraphQLInt);
 
+const nonNullCreatePostObjectType = new GraphQLNonNull(createPostObjectType);
+const nonNullCreateUserObjectType = new GraphQLNonNull(createUserObjectType);
+const nonNullCreateProfileObjectType = new GraphQLNonNull(createProfileObjectType);
+
 export { 
   nonNullUUIDType,
   nonNullMemberEnumType,
-  nonNullCreatePostObjectType,
   nonNullFloat,
   nonNullGraphQLBoolean,
   nonNullGraphQLInt,
+  nonNullCreatePostObjectType,
+  nonNullCreateUserObjectType,
+  nonNullCreateProfileObjectType,
 };

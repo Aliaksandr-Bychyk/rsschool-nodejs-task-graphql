@@ -1,7 +1,7 @@
 import { GraphQLObjectType } from 'graphql';
 import userObjectType from "../../queryTypes/userQuery/userObjectType.js";
 import IContext from "../../types/IContext.js";
-import createUserObjectType from "./createUserObjectType.js";
+import { nonNullCreateUserObjectType } from '../../types/nonNullTypes.js';
 
 interface ICreateUser {
   dto: {
@@ -15,7 +15,7 @@ const createUser = {
     type: userObjectType as GraphQLObjectType,
     args: {
       dto: {
-        type: createUserObjectType,
+        type: nonNullCreateUserObjectType,
       },
     },
     resolve: async (_source, args: ICreateUser, context: IContext) => {
