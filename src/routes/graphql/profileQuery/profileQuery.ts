@@ -1,16 +1,16 @@
 import { Profile } from "@prisma/client";
 import IContext from "../types/IContext.js";
 import { GraphQLObjectType } from "graphql";
-import { UUIDType } from "../types/uuid.js";
 import profileObjectType from "./profileObjectType.js";
 import profileObjectTypeList from "./profileObjectTypeList.js";
+import { nonNullUUIDType } from "../types/nonNullTypes.js";
 
 const profileQuery = {
   profile: {
     type: profileObjectType as GraphQLObjectType,
     args: {
       id: {
-        type: UUIDType,
+        type: nonNullUUIDType,
       },
     },
     resolve: async (_source, args: Profile, context: IContext) => {

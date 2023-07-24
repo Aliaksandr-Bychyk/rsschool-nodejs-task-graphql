@@ -2,15 +2,15 @@ import { Post } from "@prisma/client";
 import IContext from "../types/IContext.js";
 import { GraphQLObjectType } from "graphql";
 import postObjectType from "./postObjectType.js";
-import { UUIDType } from "../types/uuid.js";
 import postObjectTypeList from "./postObjectTypeList.js";
+import { nonNullUUIDType } from "../types/nonNullTypes.js";
 
 const postQuery = {
   post: {
     type: postObjectType as GraphQLObjectType,
     args: {
       id: {
-        type: UUIDType,
+        type: nonNullUUIDType,
       },
     },
     resolve: async (_source, args: Post, context: IContext) => {
