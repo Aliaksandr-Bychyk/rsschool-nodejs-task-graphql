@@ -8,7 +8,7 @@ const memberTypeLoader = (prisma: PrismaClient) => {
         id: { in: ids as string[] },
       },
     });
-    return ids.map(() => memberTypes);
+    return ids.map((id) => memberTypes.find((memberType) => memberType.id === id));
   })
 };
 

@@ -8,7 +8,7 @@ const profileLoader = (prisma: PrismaClient) => {
         userId: { in: ids as string[] },
       },
     });
-    return ids.map(() => profiles);
+    return ids.map((id) => profiles.find((profile) => profile.userId === id));
   })
 };
 
