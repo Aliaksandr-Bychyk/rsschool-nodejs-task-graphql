@@ -36,7 +36,6 @@ const userObjectType = new GraphQLObjectType({
       type: postObjectTypeList,
       description: 'The posts',
       resolve: async (source: User, _args: User, context: IContext) => {
-        console.log('test', _args.id, source.id)
         return await context.prisma.post.findMany({
           where: {
             authorId: source.id,
@@ -48,7 +47,6 @@ const userObjectType = new GraphQLObjectType({
       type: new GraphQLList(userObjectType),
       description: 'The userSubscribedTo',
       resolve: async (source: User, _args, context: IContext) => {
-        console.log('aaaa', source.id)
         return await context.prisma.user.findMany({
           where: {
             subscribedToUser: {
