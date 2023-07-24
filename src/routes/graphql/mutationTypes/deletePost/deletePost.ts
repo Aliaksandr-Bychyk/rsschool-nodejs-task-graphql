@@ -13,7 +13,7 @@ const deletePost = {
     resolve: async (_source, args: Post, context: IContext) => {
       await context.prisma.post.delete({
         where: {
-          id: args.id
+          id: args.id,
         },
       });
       return args.id;

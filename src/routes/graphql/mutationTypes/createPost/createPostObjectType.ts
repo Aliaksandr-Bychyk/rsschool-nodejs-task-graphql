@@ -13,7 +13,7 @@ const createPostObjectType = new GraphQLInputObjectType({
     authorId: {
       type: nonNullUUIDType,
     },
-  })
+  }),
 });
 
 export default createPostObjectType;

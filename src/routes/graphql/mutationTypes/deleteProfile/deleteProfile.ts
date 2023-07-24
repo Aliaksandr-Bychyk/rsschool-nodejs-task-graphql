@@ -13,7 +13,7 @@ const deleteProfile = {
     resolve: async (_source, args: Profile, context: IContext) => {
       await context.prisma.profile.delete({
         where: {
-          id: args.id
+          id: args.id,
         },
       });
       return args.id;

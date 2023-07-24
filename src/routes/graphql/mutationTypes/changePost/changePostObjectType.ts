@@ -10,7 +10,7 @@ const changePostObjectType = new GraphQLInputObjectType({
     content: {
       type: nonNullUUIDType,
     },
-  })
+  }),
 });
 
 export default changePostObjectType;
