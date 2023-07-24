@@ -1,17 +1,14 @@
 import { GraphQLInputObjectType } from "graphql";
-import { nonNullUUIDType } from "../../types/nonNullTypes.js";
+import { nonNullFloat, nonNullUUIDType } from "../../types/nonNullTypes.js";
 
 const createUserObjectType = new GraphQLInputObjectType({
   name: 'CreateUser',
   fields: () => ({
-    title: {
+    name: {
       type: nonNullUUIDType,
     },
-    content: {
-      type: nonNullUUIDType,
-    },
-    authorId: {
-      type: nonNullUUIDType,
+    balance: {
+      type: nonNullFloat,
     },
   })
 });
