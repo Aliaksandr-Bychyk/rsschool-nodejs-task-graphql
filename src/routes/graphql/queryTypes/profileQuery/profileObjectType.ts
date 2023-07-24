@@ -4,7 +4,6 @@ import memberObjectType, { memberEnumType } from "../memberQuery/memberObjectTyp
 import IContext from "../../types/IContext.js";
 import { Profile } from "@prisma/client";
 import userObjectType from "../userQuery/userObjectType.js";
-import memberTypeLoader from "../../loaders/memberTypeLoader.js";
 
 const profileObjectType = new GraphQLObjectType({
   name: 'Profile',
@@ -41,7 +40,7 @@ const profileObjectType = new GraphQLObjectType({
       type: memberObjectType as GraphQLObjectType,
       description: 'The memberType',
       resolve: async (source: Profile, _args, context: IContext) => {
-        return memberTypeLoader(context.prisma).load(source.memberTypeId);
+        return await context.loaders.memberTypeLoader.load(source.memberTypeId);
       },
     },
     memberTypeId:  {
