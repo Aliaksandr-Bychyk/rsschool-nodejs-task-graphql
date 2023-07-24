@@ -8,7 +8,7 @@ const postLoader = (prisma: PrismaClient) => {
         authorId: { in: ids as string[] },
       },
     });
-    return ids.map(() => posts);
+    return ids.map((id) => posts.filter((post) => post.authorId === id));
   })
 };
 
