@@ -4,6 +4,7 @@ import { memberEnumType } from "../queryTypes/memberQuery/memberObjectType.js";
 import createPostObjectType from "../mutationTypes/createPost/createPostObjectType.js";
 import createUserObjectType from "../mutationTypes/createUser/createUserObjectType.js";
 import createProfileObjectType from "../mutationTypes/createProfile/createProfileObjectType.js";
+import changePostObjectType from "../mutationTypes/changePost/changePostObjectType.js";
 
 const nonNullUUIDType = new GraphQLNonNull(UUIDType);
 const nonNullMemberEnumType = new GraphQLNonNull(memberEnumType);
@@ -16,6 +17,8 @@ const nonNullCreatePostObjectType = new GraphQLNonNull(createPostObjectType);
 const nonNullCreateUserObjectType = new GraphQLNonNull(createUserObjectType);
 const nonNullCreateProfileObjectType = new GraphQLNonNull(createProfileObjectType);
 
+const nonNullChangePostObjectType = new GraphQLNonNull(changePostObjectType);
+
 export { 
   nonNullUUIDType,
   nonNullMemberEnumType,
@@ -25,4 +28,5 @@ export {
   nonNullCreatePostObjectType,
   nonNullCreateUserObjectType,
   nonNullCreateProfileObjectType,
+  nonNullChangePostObjectType,
 };
