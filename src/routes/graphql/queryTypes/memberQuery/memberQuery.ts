@@ -1,9 +1,9 @@
 import { MemberType } from "@prisma/client";
 import memberObjectType from "./memberObjectType.js";
-import IContext from "../types/IContext.js";
+import IContext from "../../types/IContext.js";
 import memberObjectTypeList from "./memberObjectTypeList.js";
 import { GraphQLObjectType } from "graphql";
-import { nonNullMemberEnumType } from "../types/nonNullTypes.js";
+import { nonNullMemberEnumType } from "../../types/nonNullTypes.js";
 
 const memberQuery = {
   memberType: {

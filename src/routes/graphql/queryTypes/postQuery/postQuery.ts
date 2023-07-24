@@ -1,9 +1,9 @@
 import { Post } from "@prisma/client";
-import IContext from "../types/IContext.js";
+import IContext from "../../types/IContext.js";
 import { GraphQLObjectType } from "graphql";
 import postObjectType from "./postObjectType.js";
 import postObjectTypeList from "./postObjectTypeList.js";
-import { nonNullUUIDType } from "../types/nonNullTypes.js";
+import { nonNullUUIDType } from "../../types/nonNullTypes.js";
 
 const postQuery = {
   post: {

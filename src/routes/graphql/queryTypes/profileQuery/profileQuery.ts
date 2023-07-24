@@ -1,9 +1,9 @@
 import { Profile } from "@prisma/client";
-import IContext from "../types/IContext.js";
+import IContext from "../../types/IContext.js";
 import { GraphQLObjectType } from "graphql";
 import profileObjectType from "./profileObjectType.js";
 import profileObjectTypeList from "./profileObjectTypeList.js";
-import { nonNullUUIDType } from "../types/nonNullTypes.js";
+import { nonNullUUIDType } from "../../types/nonNullTypes.js";
 
 const profileQuery = {
   profile: {

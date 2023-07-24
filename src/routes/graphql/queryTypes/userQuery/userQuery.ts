@@ -1,9 +1,9 @@
 import { User } from "@prisma/client";
-import IContext from "../types/IContext.js";
+import IContext from "../../types/IContext.js";
 import { GraphQLObjectType } from "graphql";
 import userObjectType from "./userObjectType.js";
 import userObjectTypeList from "./userObjectTypeList.js";
-import { nonNullUUIDType } from "../types/nonNullTypes.js";
+import { nonNullUUIDType } from "../../types/nonNullTypes.js";
 
 const userQuery = {
   user: {

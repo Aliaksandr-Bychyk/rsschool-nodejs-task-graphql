@@ -1,6 +1,6 @@
 import { GraphQLObjectType } from "graphql";
-import { UUIDType } from "../types/uuid.js";
-import IContext from "../types/IContext.js";
+import { UUIDType } from "../../types/uuid.js";
+import IContext from "../../types/IContext.js";
 import { Post } from "@prisma/client";
 import userObjectType from "../userQuery/userObjectType.js";
 

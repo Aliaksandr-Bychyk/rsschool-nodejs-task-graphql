@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLFloat, GraphQLInt, GraphQLEnumType } from "graphql";
-import { MemberTypeId } from "../../member-types/schemas.js";
+import { MemberTypeId } from "../../../member-types/schemas.js";
 import profileObjectTypeList from "../profileQuery/profileObjectTypeList.js";
-import IContext from "../types/IContext.js";
+import IContext from "../../types/IContext.js";
 import { MemberType } from "@prisma/client";
 
 const memberEnumType = new GraphQLEnumType({
