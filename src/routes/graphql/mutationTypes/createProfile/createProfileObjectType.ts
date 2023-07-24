@@ -2,7 +2,7 @@ import { GraphQLInputObjectType } from "graphql";
 import { nonNullGraphQLBoolean, nonNullGraphQLInt, nonNullUUIDType } from "../../types/nonNullTypes.js";
 
 const createProfileObjectType = new GraphQLInputObjectType({
-  name: 'CreateUser',
+  name: 'CreateProfileInput',
   fields: () => ({
     isMale: {
       type: nonNullGraphQLBoolean,
