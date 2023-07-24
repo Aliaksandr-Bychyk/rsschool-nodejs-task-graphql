@@ -8,6 +8,7 @@ interface ILoaders {
   profileLoader: DataLoader<string, Profile>;
   subscribedToUserLoader: DataLoader<string, User[]>;
   userSubscribedToLoader: DataLoader<string, User[]>;
+  userLoader: DataLoader<string, User>;
 }
 
 interface IContext {

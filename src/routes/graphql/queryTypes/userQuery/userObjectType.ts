@@ -5,6 +5,17 @@ import { User } from "@prisma/client";
 import profileObjectType from "../profileQuery/profileObjectType.js";
 import postObjectTypeList from "../postQuery/postObjectTypeList.js";
 
+export interface IUserSubscribed extends User {
+  userSubscribedTo?: {
+    subscriberId: string;
+    authorId: string;
+  }[];
+  subscribedToUser?: {
+    subscriberId: string;
+    authorId: string;
+  }[];
+}
+
 const userObjectType = new GraphQLObjectType({
   name: 'User',
   description: 'A User',
@@ -38,14 +49,22 @@ const userObjectType = new GraphQLObjectType({
     userSubscribedTo: {
       type: new GraphQLList(userObjectType),
       description: 'The userSubscribedTo',
-      resolve: async (source: User, _args, context: IContext) => {
+      resolve: async (source: IUserSubscribed, _args, context: IContext) => {
+        if (source.userSubscribedTo) {
+          const authorsId = source.userSubscribedTo.map((user) => user.authorId);
+          return await context.loaders.userLoader.loadMany(authorsId);
+        }
         return await context.loaders.userSubscribedToLoader.load(source.id);
       },
     },
     subscribedToUser: {
       type: new GraphQLList(userObjectType),
       description: 'The subscribedToUser',
-      resolve: async (source: User, _args, context: IContext) => {
+      resolve: async (source: IUserSubscribed, _args, context: IContext) => {
+        if (source.subscribedToUser) {
+          const subscribersId = source.subscribedToUser.map((user) => user.subscriberId);
+          return await context.loaders.userLoader.loadMany(subscribersId);
+        }
         return await context.loaders.subscribedToUserLoader.load(source.id);
       },
     },
