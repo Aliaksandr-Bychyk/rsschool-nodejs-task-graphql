@@ -4,6 +4,10 @@ import IContext from "../../types/IContext.js";
 import { User } from "@prisma/client";
 import profileObjectType from "../profileQuery/profileObjectType.js";
 import postObjectTypeList from "../postQuery/postObjectTypeList.js";
+import postLoader from "../../loaders/postLoader.js";
+import profileLoader from "../../loaders/profileLoader.js";
+import userSubscribedToLoader from "../../loaders/userSubscribedToLoader.js";
+import subscribedToUserLoader from "../../loaders/subscribedToUserLoader.js";
 
 const userObjectType = new GraphQLObjectType({
   name: 'User',
@@ -25,52 +29,28 @@ const userObjectType = new GraphQLObjectType({
       type: profileObjectType as GraphQLObjectType,
       description: 'The profile',
       resolve: async (source: User, _args, context: IContext) => {
-        return await context.prisma.profile.findUnique({
-          where: {
-            userId: source.id,
-          },
-        });
+        return profileLoader(context.prisma).load(source.id);
       },
     },
     posts: {
       type: postObjectTypeList,
       description: 'The posts',
       resolve: async (source: User, _args: User, context: IContext) => {
-        return await context.prisma.post.findMany({
-          where: {
-            authorId: source.id,
-          },
-        });
+        return postLoader(context.prisma).load(source.id)
       },
     },
     userSubscribedTo: {
       type: new GraphQLList(userObjectType),
       description: 'The userSubscribedTo',
       resolve: async (source: User, _args, context: IContext) => {
-        return await context.prisma.user.findMany({
-          where: {
-            subscribedToUser: {
-              some: {
-                subscriberId: source.id,
-              },
-            },
-          },
-        });
+        return userSubscribedToLoader(context.prisma).load(source.id);
       },
     },
     subscribedToUser: {
       type: new GraphQLList(userObjectType),
       description: 'The subscribedToUser',
       resolve: async (source: User, _args, context: IContext) => {
-        return await context.prisma.user.findMany({
-          where: {
-            userSubscribedTo: {
-              some: {
-                authorId: source.id,
-              },
-            },
-          },
-        });
+        return subscribedToUserLoader(context.prisma).load(source.id);
       },
     },
   })
